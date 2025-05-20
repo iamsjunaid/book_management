@@ -1,0 +1,96 @@
+{
+  "books": [
+    {
+      "id": "1",
+      "title": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "genre": "Classic",
+      "publishedYear": 1925,
+      "status": "Available"
+    },
+    {
+      "id": "2",
+      "title": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "genre": "Historical",
+      "publishedYear": 1960,
+      "status": "Issued"
+    },
+    {
+      "status": "Issued",
+      "id": "d1ad"
+    },
+    {
+      "status": "Issued",
+      "id": "a16d"
+    },
+    {
+      "status": "Issued",
+      "id": "6d46"
+    },
+    {
+      "status": "Issued",
+      "id": "a80f"
+    },
+    {
+      "status": "Issued",
+      "id": "834b"
+    },
+    {
+      "status": "Issued",
+      "id": "d042"
+    },
+    {
+      "status": "Issued",
+      "id": "c9cf"
+    },
+    {
+      "status": "Issued",
+      "id": "b8ff"
+    },
+    {
+      "status": "Issued",
+      "id": "b533"
+    },
+    {
+      "status": "Issued",
+      "id": "fd0e"
+    },
+    {
+      "id": "9f94",
+      "title": "1984",
+      "author": "George Orwell",
+      "genre": "Dystopian",
+      "publishedYear": 1949,
+      "status": "Available"
+    },
+    {
+      "id": "d611",
+      "title": "1984",
+      "author": "George Orwell",
+      "genre": "Dystopian",
+      "publishedYear": 1949,
+      "status": "Available"
+    },
+    {
+      "id": "fd11",
+      "title": "1984",
+      "author": "George Orwell",
+      "genre": "Dystopian",
+      "publishedYear": 1949,
+      "status": "Available"
+    },
+    {
+      "id": "8c65",
+      "title": "1984",
+      "author": "George Orwell",
+      "genre": "Dystopian",
+      "publishedYear": 1949,
+      "status": "Available"
+    },
+    {
+      "status": "Issued",
+      "id": "2d60"
+    }
+  ]
+}
