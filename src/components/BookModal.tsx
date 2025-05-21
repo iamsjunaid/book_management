@@ -37,7 +37,7 @@ const BookModal: React.FC<BookModalProps> = ({ initialData, onSubmit, onClose })
                         <label>Title</label>
                         <input
                             {...register('title', { required: true })}
-                            className="border p-2 w-full rounded"
+                            className="border border-gray-200 p-2 w-full rounded"
                         />
                         {errors.title && <span className="text-red-500 text-sm">Title is required</span>}
                     </div>
@@ -46,7 +46,7 @@ const BookModal: React.FC<BookModalProps> = ({ initialData, onSubmit, onClose })
                         <label>Author</label>
                         <input
                             {...register('author', { required: true })}
-                            className="border p-2 w-full rounded"
+                            className="border border-gray-200 p-2 w-full rounded"
                         />
                         {errors.author && <span className="text-red-500 text-sm">Author is required</span>}
                     </div>
@@ -55,7 +55,7 @@ const BookModal: React.FC<BookModalProps> = ({ initialData, onSubmit, onClose })
                         <label>Genre</label>
                         <input
                             {...register('genre', { required: true })}
-                            className="border p-2 w-full rounded"
+                            className="border border-gray-200 p-2 w-full rounded"
                         />
                         {errors.genre && <span className="text-red-500 text-sm">Genre is required</span>}
                     </div>
@@ -65,7 +65,7 @@ const BookModal: React.FC<BookModalProps> = ({ initialData, onSubmit, onClose })
                         <input
                             type="number"
                             {...register('publishedYear', { required: true })}
-                            className="border p-2 w-full rounded"
+                            className="border border-gray-200 p-2 w-full rounded"
                         />
                         {errors.publishedYear && (
                             <span className="text-red-500 text-sm">Year is required</span>
@@ -74,17 +74,17 @@ const BookModal: React.FC<BookModalProps> = ({ initialData, onSubmit, onClose })
 
                     <div>
                         <label>Status</label>
-                        <select {...register('status')} className="border p-2 w-full rounded">
+                        <select {...register('status')} className="border border-gray-200 p-2 w-full rounded">
                             <option value="Available">Available</option>
                             <option value="Issued">Issued</option>
                         </select>
                     </div>
 
                     <div className="flex justify-end gap-2">
-                        <button type="button" onClick={onClose} className="px-4 py-2 rounded border">
+                        <button type="button" onClick={onClose} className="px-4 py-1 rounded border border-gray-200">
                             Cancel
                         </button>
-                        <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded">
+                        <button type="submit" className="px-4 py-1 bg-blue-600 text-white rounded">
                             {initialData ? 'Update' : 'Add'}
                         </button>
                     </div>
