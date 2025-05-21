@@ -5,16 +5,21 @@ import BookModal from '../components/BookModal';
 import { useBooks } from '../hooks/useBooks';
 import type { Book } from '../types/book';
 
-
 const Dashboard = () => {
     const { booksQuery } = useBooks();
+
     const [search, setSearch] = useState('');
+
     const [statusFilter, setStatusFilter] = useState('');
     const [genreFilter, setGenreFilter] = useState('');
 
     const [showModal, setShowModal] = useState(false);
+
     const [editBook, setEditBook] = useState<Book | null>(null);
     const [bookToDelete, setBookToDelete] = useState<Book | null>(null);
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const booksPerPage = 10;
 
     const { addBookMutation, updateBookMutation, deleteBookMutation } = useBooks();
 
@@ -54,17 +59,34 @@ const Dashboard = () => {
         return matchesSearch && matchesStatus && matchesGenre;
     });
 
+    // ⬇️ Pagination logic
+    const indexOfLastBook = currentPage * booksPerPage;
+    const indexOfFirstBook = indexOfLastBook - booksPerPage;
+    const currentBooks = filteredBooks.slice(indexOfFirstBook, indexOfLastBook);
+
+    const totalPages = Math.ceil(filteredBooks.length / booksPerPage);
+
 
     return (
         <div className="p-6">
-            <h1 className="text-2xl font-bold mb-4">Book Dashboard</h1>
+            <div className="flex items-center justify-between mb-4">
+                <h1 className="text-2xl font-bold mb-4">Book Dashboard</h1>
+                <div className="ml-auto">
+                    <button
+                        onClick={() => setShowModal(true)}
+                        className="px-2 py-1 bg-blue-400 text-white rounded"
+                    >
+                       Add a new Book
+                    </button>
+                </div>
+            </div>
 
             {/* 🔍 Search & Filters */}
             <div className="flex flex-wrap gap-4 mb-4">
                 <input
                     type="text"
                     placeholder="Search by title or author"
-                    className="border rounded w-full px-2 md:w-1/3"
+                    className="border border-gray-200 rounded w-full px-2 py-1 md:w-1/3 bg-white"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                 />
@@ -72,7 +94,7 @@ const Dashboard = () => {
                 <select
                     value={statusFilter}
                     onChange={(e) => setStatusFilter(e.target.value)}
-                    className="border px-2 rounded"
+                    className="border border-gray-200 px-2 rounded sm:w-64 py-1 bg-white"
                 >
                     <option value="">All Status</option>
                     <option value="Available">Available</option>
@@ -82,7 +104,7 @@ const Dashboard = () => {
                 <select
                     value={genreFilter}
                     onChange={(e) => setGenreFilter(e.target.value)}
-                    className="border px-2 rounded"
+                    className="border border-gray-200 px-2 rounded sm:w-64 bg-white"
                 >
                     <option value="">All Genres</option>
                     {[...new Set(books.map((b) => b.genre).filter((g) => g))].map((genre, i) => (
@@ -91,16 +113,6 @@ const Dashboard = () => {
                         </option>
                     ))}
                 </select>
-
-                <div className="ml-auto">
-                    <button
-                        onClick={() => setShowModal(true)}
-                        className="p-2 bg-green-600 text-white rounded"
-                    >
-                        + Add Book
-                    </button>
-                </div>
-
             </div>
 
             {/* 📚 Book Modal */}
@@ -117,27 +129,27 @@ const Dashboard = () => {
 
 
             {/* 📋 Book List Table */}
-            <div className="overflow-x-auto">
-                <table className="min-w-full border rounded">
+            <div className="overflow-x-auto w-full">
+                <table className="min-w-full border border-gray-200 rounded-xl shadow-lg">
                     <thead>
-                        <tr className="bg-gray-100 text-left">
-                            <th className="p-2">Title</th>
-                            <th className="p-2">Author</th>
-                            <th className="p-2">Genre</th>
-                            <th className="p-2">Published</th>
-                            <th className="p-2">Status</th>
-                            <th className="p-2">Actions</th>
+                        <tr className=" text-left bg-white">
+                            <th className="p-2 font-semibold">Title</th>
+                            <th className="p-2 font-semibold">Author</th>
+                            <th className="p-2 font-semibold">Genre</th>
+                            <th className="p-2 font-semibold">Published</th>
+                            <th className="p-2 font-semibold">Status</th>
+                            <th className="p-2 font-semibold">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {filteredBooks.map((book) => (
-                            <tr key={book.id} className="border-t">
+                        {currentBooks.map((book) => (
+                            <tr key={book.id} className="border-t border-gray-200 bg-white hover:bg-gray-100 ">
                                 <td className="p-2">{book.title}</td>
-                                <td className="p-2">{book.author}</td>
+                                <td className="p-2 cursor-pointer">{book.author}</td>
                                 <td className="p-2">{book.genre}</td>
                                 <td className="p-2">{book.publishedYear}</td>
                                 <td className="p-2">{book.status}</td>
-                                <td className="p-2">
+                                <td className="flex justify-around items-center mt-2">
                                     <button
                                         onClick={() => {
                                             setEditBook(book);
@@ -161,6 +173,36 @@ const Dashboard = () => {
                 </table>
             </div>
 
+            {/* 📄 Pagination */}
+            <div className="flex justify-center mt-4 space-x-2">
+                <button
+                    disabled={currentPage === 1}
+                    onClick={() => setCurrentPage((prev) => prev - 1)}
+                    className="px-3 py-1 border border-gray-200 rounded disabled:opacity-50"
+                >
+                    Prev
+                </button>
+
+                {[...Array(totalPages)].map((_, i) => (
+                    <button
+                        key={i}
+                        onClick={() => setCurrentPage(i + 1)}
+                        className={`px-3 py-1 border border-gray-200 rounded ${currentPage === i + 1 ? 'bg-blue-600 text-white' : ''
+                            }`}
+                    >
+                        {i + 1}
+                    </button>
+                ))}
+
+                <button
+                    disabled={currentPage === totalPages}
+                    onClick={() => setCurrentPage((prev) => prev + 1)}
+                    className="px-3 py-1 border border-gray-200 rounded disabled:opacity-50"
+                >
+                    Next
+                </button>
+            </div>
+
             {bookToDelete && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
                     <div className="bg-white p-6 rounded shadow-md">
@@ -170,13 +212,13 @@ const Dashboard = () => {
                         <div className="flex justify-end space-x-2">
                             <button
                                 onClick={() => setBookToDelete(null)}
-                                className="px-4 py-2 border rounded"
+                                className="px-4 py-1 border rounded"
                             >
                                 Cancel
                             </button>
                             <button
                                 onClick={confirmDelete}
-                                className="px-4 py-2 bg-red-600 text-white rounded"
+                                className="px-4 py-1 bg-red-600 text-white rounded"
                             >
                                 Delete
                             </button>
