@@ -44,7 +44,7 @@ src/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/iamsjunaid/book-management-dashboard.git
+git clone https://github.com/iamsjunaid/book_management.git
 cd book-management-dashboard
 ```
 
