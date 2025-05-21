@@ -31,6 +31,70 @@
       "genre": "Fiction",
       "publishedYear": 2025,
       "status": "Available"
+    },
+    {
+      "id": "3",
+      "title": "The Catcher in the Rye",
+      "author": "J.D. Salinger",
+      "genre": "Fiction",
+      "publishedYear": 1951,
+      "status": "Available"
+    },
+    {
+      "id": "4",
+      "title": "Pride and Prejudice",
+      "author": "Jane Austen",
+      "genre": "Romance",
+      "publishedYear": 1813,
+      "status": "Available"
+    },
+    {
+      "id": "5",
+      "title": "The Hobbit",
+      "author": "J.R.R. Tolkien",
+      "genre": "Fantasy",
+      "publishedYear": 1937,
+      "status": "Issued"
+    },
+    {
+      "id": "6",
+      "title": "Moby",
+      "author": "Herman Melville",
+      "genre": "Adventure",
+      "publishedYear": 1851,
+      "status": "Available"
+    },
+    {
+      "id": "7",
+      "title": "War and Peace",
+      "author": "Leo Tolstoy",
+      "genre": "Historical",
+      "publishedYear": 1869,
+      "status": "Available"
+    },
+    {
+      "id": "8",
+      "title": "The Odyssey",
+      "author": "Homer",
+      "genre": "Epic",
+      "publishedYear": -800,
+      "status": "Available"
+    },
+    {
+      "id": "9",
+      "title": "The Divine Comedy",
+      "author": "Dante Alighieri",
+      "genre": "Epic",
+      "publishedYear": 1320,
+      "status": "Available"
+    },
+    {
+      "id": "10",
+      "title": "The Brothers Karamazov",
+      "author": "Fyodor Dostoevsky",
+      "genre": "Philosophical Fiction",
+      "publishedYear": 1880,
+      "status": "Available"
     }
   ]
 }
